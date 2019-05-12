@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "target": "es2018",
+    "outDir": "./dest",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "rootDir": "app"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

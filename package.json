@@ -1,0 +1,37 @@
+{
+  "name": "my_project",
+  "version": "1.0.0",
+  "description": "just description",
+  "main": "",
+  "scripts": {
+    "build": "gulp",
+    "nyc": "nyc mocha",
+    "test": "jasmine ./dest/**/*.spec.js",
+    "fix": "tslint --fix ./app/**/*.ts"
+  },
+  "author": "Evhenii Trohniyk",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@types/jasmine": "^3.3.12",
+    "babel": "^6.23.0",
+    "del": "^4.0.0",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-jasmine": "^4.0.0",
+    "gulp-tslint": "^8.1.4",
+    "gulp-typescript": "^5.0.1",
+    "jasmine": "^3.3.1",
+    "jasmine-node": "^1.16.2",
+    "nyc": "^14.0.0",
+    "source-map": "^0.7.3",
+    "ts-node": "^8.0.3",
+    "tslint": "^5.15.0",
+    "typescript": "^3.3.4000",
+    "winston": "^3.2.1"
+  },
+  "dependencies": {
+    "json-object-mapper": "^1.6.0"
+  }
+}

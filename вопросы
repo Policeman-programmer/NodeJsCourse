@@ -1,0 +1,5 @@
+Failures:
+1) Testing of AsyncProvider should sum sequences of Async results
+1.1) Expected Function to be greater than 3
+ почему Function?
+
