@@ -10,14 +10,6 @@ const babel = require('gulp-babel');
 const src = './app/**/*.ts',
     dest = './dest/**/*';
 
-gulp.task('babel', () =>
-    gulp.src(src)
-        .pipe(babel({
-            presets: ['@babel/env']
-        }))
-        .pipe(gulp.dest(dest))
-);
-
 gulp.task('delete', async () => {
     const deletedPaths = await del([dest]);
     console.log('Deleted files and folders:\n', deletedPaths.join('\n'));
@@ -34,7 +26,10 @@ gulp.task("tslint", () =>
 gulp.task("js", () => {
     return gulp.src(src)
         .pipe(tsProject())
-        .js.pipe(gulp.dest("dest"));
+        .pipe(babel({
+            presets: [['@babel/env', {targets: {node: "current"}}]]
+         }))
+        .pipe(gulp.dest("dest"));
 });
 
 gulp.task('test', () =>
@@ -42,11 +37,4 @@ gulp.task('test', () =>
         .pipe(jasmine({ verbose: true }))
 );
 
-// gulp.task('babel', () =>
-//     gulp.src('src/app.js')
-//         .pipe(babel({
-//             presets: ['@babel/env']
-//         }))
-//         .pipe(gulp.dest('dist'))
-// );
-gulp.task('default', gulp.series('delete', 'tslint',  'js', 'test'));
+gulp.task('default', gulp.series('delete', 'tslint', 'js', 'test'));

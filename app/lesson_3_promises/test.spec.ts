@@ -5,7 +5,7 @@ describe("test of SlowNumberGenerator class", () => {
 
     it("should get random number it particular range", (done) => {
             const range: number = 5;
-            const promise = slowNumberGenerator.getRandomNumberAfter4Seconds(range);
+            const promise: Promise<number> = slowNumberGenerator.getRandomNumberAfter4Seconds(range);
             promise.then((resp) => {
                 expect(resp).toBeGreaterThan(0);
                 expect(resp).toBeLessThan(range);
@@ -17,8 +17,9 @@ describe("test of SlowNumberGenerator class", () => {
             const range: number = 5;
             slowNumberGenerator.getConsequenceOfPromises(range).then((resp) => {
                 expect(resp).toBeGreaterThan(3);
+                done();
             });
-            done();
+
         });
 
     it("should sum array of promise's results", (done) => {
@@ -26,8 +27,9 @@ describe("test of SlowNumberGenerator class", () => {
             slowNumberGenerator.getArrOfPromisesResponse(range).then((resp) => {
                 expect(resp).toBeGreaterThan(range);
                 expect(resp).toBeLessThanOrEqual(range * 4);
+                done();
             });
-            done();
+
         });
 
     it("should sum numbers by callback function", () => {

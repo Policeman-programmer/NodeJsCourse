@@ -4,7 +4,7 @@ export class SlowNumberGenerator {
         return Math.floor(Math.random() * maxNumber) + 1;
     }
 
-    public getRandomNumberAfter4Seconds(range: number) {
+    public getRandomNumberAfter4Seconds(range: number): Promise<number> {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve(SlowNumberGenerator.getRandomNumber(range));
@@ -12,12 +12,10 @@ export class SlowNumberGenerator {
         });
     }
 
-    public getConsequenceOfPromises(range: number) {
-        function callbeck(resp: number) {
+    public getConsequenceOfPromises(range: number): Promise<number> {
+        function callbeck(resp: number): Promise<number> {
             return new Promise((resolve) => {
-                resolve(() => {
-                    return SlowNumberGenerator.getRandomNumber(range) + resp;
-                });
+                resolve(SlowNumberGenerator.getRandomNumber(range) + resp);
             });
         }
 
@@ -25,8 +23,8 @@ export class SlowNumberGenerator {
             setTimeout(() => {
                 resolve(SlowNumberGenerator.getRandomNumber(range));
             }, 1000);
-        }).then((resp: number) => callbeck(resp))
-            .then((resp: number) => callbeck(resp));
+        }).then(async (resp: number) => callbeck(resp))
+            .then(async (resp: number) => callbeck(resp));
     }
 
     public getArrOfPromisesResponse(range: number) {
@@ -42,18 +40,18 @@ export class SlowNumberGenerator {
     }
 
     public sum2RandomNumbersByCallbackFunction(range: number) {
-        function getSumOfNumbers(maxNumber: number, callbackFunc: (numberToAdd: number) => number): number {
-            return setTimeout(() => {
-                const firstNumber = SlowNumberGenerator.getRandomNumber(maxNumber);
-                return callbackFunc(firstNumber);
-            }, 4000);
-        }
-
-        function getSecondNumberFunc(firstNumber: number): number {
-            return firstNumber + SlowNumberGenerator.getRandomNumber(range);
-        }
-
-        return getSumOfNumbers(range, getSecondNumberFunc);
+        // function getSumOfNumbers(maxNumber: number, callbackFunc: (numberToAdd: number) => number): number {
+        //     return setTimeout(() => {
+        //         const firstNumber = SlowNumberGenerator.getRandomNumber(maxNumber);
+        //         return callbackFunc(firstNumber);
+        //     }, 4000);
+        // }
+        //
+        // function getSecondNumberFunc(firstNumber: number): number {
+        //     return firstNumber + SlowNumberGenerator.getRandomNumber(range);
+        // }
+        //
+        // return getSumOfNumbers(range, getSecondNumberFunc);
     }
 
 }
